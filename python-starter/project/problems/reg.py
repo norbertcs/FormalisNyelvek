@@ -40,7 +40,7 @@ class Minimalisation(Problem):
             results = task5(text)
 
         with open(output_file, "w", encoding="utf-8") as f:
-            f.write("\n".join(results) + ("\n" if results else ""))
+            f.write("\n".join(results))
 
 
 TASK1_PATTERNS = [
@@ -51,9 +51,9 @@ TASK1_PATTERNS = [
     r"^[0-9-]+ 10:18:51\.[0-9]+ +221 ",                    # 10:18:51, 221-es PID
     r"^[0-9-]+ [0-9:.]+ +[0-9]+ +[0-9]+ E ",               # hibak (E)
     r"^[0-9-]+ [0-9:.]+ +[0-9]+ +[0-9]+ W PackageManager:",# PackageManager warningok
-    r"^[0-9-]+ [0-9:.]+ +[0-9]+ +[0-9]+ D [^:\s]*ExoPlayer[^:\s]*:",    # ExoPlayer debug
+    r"^[0-9-]+ [0-9:.]+ +[0-9]+ +[0-9]+ D .*ExoPlayer",    # ExoPlayer debug
     r"^[0-9-]+ [0-9:.]+ +[0-9]+ +[0-9]+ [EW] .*\.java:",                # java pozicio E/W sorokban
-    r"^[0-9-]+ [0-9:.]+ +[0-9]+ +[0-9]+ [IDVEFAW] [^:]+: .*\bThread\b", # Thread az uzenetben
+    r"^[0-9-]+ [0-9:.]+ +[0-9]+ +[0-9]+ [IDVEFAW] [^:]+: .*Thread", # Thread az uzenetben
 ]
 STACK_CLASS_RE = re.compile(r"^[0-9-]+ [0-9:.]+ +[0-9]+ +[0-9]+ E .*at .*?\((\w+\.java):[0-9]+\)", re.M)
 PID_RE = re.compile(r"^[0-9-]+ [0-9:.]+ +([0-9]+) +[0-9]+ [IDVEFAW] ", re.M)
